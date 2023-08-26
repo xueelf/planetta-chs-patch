@@ -1,0 +1,71 @@
+◆高順位確認事項
+EV_HD04　b以降の汁差分が、スジに見える
+
+◇確認・顔アイコン不備
+ko30.ks　で、こなつが和制服着てるイベントCG時の
+	　顔アイコンが私服。
+	　コード自体無いので、非表示が手っ取り早い
+	　かと思われ。
+	　同現象がなゆたにもある。
+
+◇確認
+ko13.ks　プラネッタ冒頭演出マクロのミス
+	プラネッタ冒頭演出マクロにはスキップのチェックがあるが、そのフラグを管理してないので
+	プラネッタ冒頭演出後処理マクロで作られていないnewlayエラーが起きる。
+
+	[プラネッタ冒頭演出]～[プラネッタ冒頭演出後処理]の間だけ有効なsf.skipflag=false/true
+	を用意しておいて、
+
+;----------------------------------------------------------
+[macro name=プラネッタ冒頭演出]
+
+⇒	[eval exp="sf.skipflag=true"]
+
+	[if exp="!kag.skipMode"]
+	[clickskip enabled=false]
+
+⇒	[eval exp="sf.skipflag="false"]
+
+	[msgoff]
+	[newlay name=cg00 level=0 file=BG_101a zoom=200 ypos=-720]
+	[newlay name=cg01 level=1 file=kumo xpos=-640 type=screen]
+	[newlay name=cg02 level=1 file=kumo2 xpos=640 type=screen]
+	[newlay name=cg03 level=1 file=white type=psdodge5]
+
+	[cg00 time=20000 ypos=300 zoom=100 nowait]
+	[cg01 time=6000 opacity=0 xpos=640 nowait]
+	[cg02 time=6000 opacity=0 xpos=-640 nowait]
+	[cg03 time=6000 opacity=0 nowait]
+
+	[clickskip enabled=true]
+	[endif]
+
+[endmacro]
+
+;----------------------------------------------------------
+[macro name=プラネッタ冒頭演出後処理]
+
+⇒	[if exp="sf.skipflag==false"]
+
+	[cg01 stopaction]
+	[cg02 stopaction]
+	[cg03 stopaction]
+	[cg00 stopaction]
+
+	[dellay name=cg00]
+	[dellay name=cg01]
+	[dellay name=cg02]
+	[dellay name=cg03]
+
+⇒	[endif]
+
+[endmacro]
+
+;----------------------------------------------------------
+
+かなんかに、変える。
+と、エラーが出なくなるかもしれない。
+trueとfalse逆だったらごめん。
+
+◇意見
+ev_hd01a　顔が角ばってる感じがする。
