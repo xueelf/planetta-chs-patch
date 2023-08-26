@@ -2,7 +2,9 @@
 
 游戏『ミライセカイのプラネッタ』的汉化补丁
 
-![planetta](https://vip2.loli.io/2023/08/23/jWaJAuT4gXNmVZt.png)
+<a href="http://www.libre-soft.jp/planetta/index.html">
+  <img src="https://vip2.loli.io/2023/08/23/jWaJAuT4gXNmVZt.png" alt="Mirai Sekai no Planeta" />
+</a>
 
 ## 汉化进度
 
